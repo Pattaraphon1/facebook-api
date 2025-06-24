@@ -1,0 +1,21 @@
+###
+#Login Api
+
+POST  http://localhost:8899/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "identity":"andy@ggg.mail",
+  "password":"123456"
+}
+
+GET http://localhost:8899/api/auth/me HTTP/1.1
+
+###
+
+POST http://localhost:8899/api/post HTTP/1.1
+Content-Type: application/json
+
+{
+  "message": "Hello, CC20"
+}
