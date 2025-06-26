@@ -101,17 +101,21 @@ export const login = async (req, res, next) => {
       expiresIn : '15d'
     })
 
+    const {password : pw, createAt, updateAt, ...userData } = foundUser
+
   res.json({
     msg: 'Login Success!',
-    body: token
-  })
+    token: token,
+    user : userData
+  });
 }
 
 export const getMe = async (req, res, next) => {
 
-  let numUser = await prisma.user.count()
-  console.log(numUser)
-  createError(403, "Block !!")
-  res.json({ msg: 'Getme controller', numUser })
+  // let numUser = await prisma.user.count()
+  // console.log(numUser)
+  // createError(403, "Block !!")
+  res.json({ user : req.user })
+  // res.json({ msg: 'Getme controller', numUser })
 }
 

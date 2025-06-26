@@ -6,10 +6,10 @@ POST  http://localhost:8899/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "seyoung@gmail.com",
-  "mobile": "0810113685",
-  "firstName": "win",
-  "lastName": "Codecamp",
+  "email": "squidpid123@gmail.com",
+  "mobile": "0922537452",
+  "firstName": "seyoung",
+  "lastName": "yamada",
   "password": "123456",
   "confirmPassword": "123456"
 }
@@ -26,6 +26,13 @@ Content-Type: application/json
 }
 
 ###
+
+GET http://localhost:8899/api/auth/me HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTA3NDM3LCJleHAiOjE3NTIyMDM0Mzd9.LhUd9JXGRYjBcaokMc284D4kH1q-Yr6nEnFzlHXF0SA
+
+###
+
+###
 POST http://localhost:8899/api/post HTTP/1.1
 Content-Type: application/json
 
@@ -33,3 +40,4 @@ Content-Type: application/json
   "message": "Hello, CC20"
   # "message": "Hello, CC21"
 }
+
