@@ -1,5 +1,5 @@
 import prisma from "../config/prisma.config.js"
-import { getUserBy } from "../services/user.service.js";
+import { createUser, getUserBy } from "../services/user.service.js";
 import checkIdentity from "../utils/check-identity-util.js";
 import createError from "../utils/create-error.util.js";
 import bcrypt from "bcryptjs";
@@ -36,7 +36,7 @@ export async function register(req, res, next) {
 
     // const result = await prisma.user.create({data: newUser})
     res.json({
-      msg: 'Register controller',
+      message: 'Register controller',
       result: result,
     })
 
@@ -68,8 +68,9 @@ export async function registerYup(req, res, next) {
       lastName: lastName
     }
     // สร้าง new user ใน database
-    const result = await prisma.user.create({ data: newUser })
-    res.json({ msg: `Register successful`, result })
+    // const result = await prisma.user.create({ data: newUser })
+    await createUser(newUser)
+    res.json({ message: `Register successful`})
 
   } catch (err) {
     next(err)
@@ -104,7 +105,7 @@ export const login = async (req, res, next) => {
     const {password : pw, createAt, updateAt, ...userData } = foundUser
 
   res.json({
-    msg: 'Login Success!',
+    message: 'Login Success!',
     token: token,
     user : userData
   });
