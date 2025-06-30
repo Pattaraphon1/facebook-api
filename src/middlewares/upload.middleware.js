@@ -14,5 +14,5 @@ const storage =  multer.diskStorage({
 })
 
 
-export default multer({dest : dest })
+export default multer({storage })
 
