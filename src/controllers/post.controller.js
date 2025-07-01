@@ -4,11 +4,19 @@ import path from 'path';
 import prisma from "../config/prisma.config.js";
 
 export async function getAllPosts(req, res, next) {
+    const resp = await prisma.post.findMany({
+        orderBy : { createdAt : 'desc' },
+        include : {
+            user : { select : {
+                firstName: true, lastName: true, profileImage:true
+            }}
+        }
+    })
 
-    res.json({ message: "Get all posts" })
+    res.json({ posts: resp})
 }
 
-export async function createPost(req, res, next) {
+export const createPost = async(req, res, next) =>{
     const { message } = req.body
     console.log(req.file)
     let haveFile = !!req.file
@@ -23,7 +31,7 @@ export async function createPost(req, res, next) {
 
     const data = {
         message : message,
-        image : uploadResult.secure_url,
+        image : uploadResult?.secure_url || '',
         userId : req.user.id
     }
 
